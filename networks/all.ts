@@ -15,9 +15,11 @@ import phalaConfig from './phala'
 import polkadotConfig from './polkadot'
 import statemintConfig from './statemint'
 import uniqueConfig from './unique'
+import assetHubConfig from './asset-hub'
 
 const all = {
   polkadot: polkadotConfig,
+  assetHub: assetHubConfig,
   statemint: statemintConfig,
   acala: acalaConfig,
   astar: astarConfig,
