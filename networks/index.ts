@@ -73,6 +73,7 @@ export const createNetworks = async (
   networkOptions: Partial<Record<NetworkNames, Partial<SetupOption> | undefined>>,
   context = createContext(),
 ) => {
+  console.log('createNetworks', networkOptions)
   const ret = {} as Record<NetworkNames, Network>
 
   let wasmOverriden = false

@@ -20,18 +20,11 @@ import { KhalaAdapter } from '@polkawallet/bridge/adapters/phala'
 import { CrabAdapter } from '@polkawallet/bridge/adapters/darwinia'
 import { Bridge } from '@polkawallet/bridge'
 import { FixedPointNumber } from '@acala-network/sdk-core'
-import { TestTtype } from '../bridge-sdk/shared'
-
-export type TestType = {
-  from: NetworkNames
-  to: NetworkNames
-  token: string
-  ignoreFee?: boolean
-}
+import { TestType } from './dmp.test'
 
 // make configurable / more generalised
-export const buildTests = (tests: ReadonlyArray<TestTtype>) => {
-  for (const { from, to, token, ignoreFee } of tests) {
+export const buildTests = (tests: ReadonlyArray<TestType>) => {
+  for (const { from, to, test, name} of tests) {
     describe(`'${from}' to '${to}' using bridgeSDK cross-chain '${token}'`, async () => {
       let fromchain: Network
       let tochain: Network
@@ -115,6 +108,7 @@ export const buildTests = (tests: ReadonlyArray<TestTtype>) => {
         }
 
         it('Should teleport native assets from the Relay Chain to the Assets Parachain', async () => {
+          console.log('it: Should teleport native assets from the Relay Chain to the Assets Parachain')
           const fromChain = await chooseAdapter(from, fromchain.api)
           const toChain = await chooseAdapter(to, tochain.api)
           const sdk = new Bridge({ adapters: [fromChain as any, toChain as any] })

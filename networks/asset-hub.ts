@@ -14,14 +14,6 @@ export default {
       System: {
         Account: [[[alice.address], { providers: 1, data: { free: 10 * 1e12 } }]],
       },
-      ParasDisputes: {
-        // those can makes block building super slow
-        $removePrefix: ['disputes'],
-      },
-      Dmp: {
-        // clear existing dmp to avoid impact test result
-        $removePrefix: ['downwardMessageQueues'],
-      },
     },
   }),
 } satisfies Config
