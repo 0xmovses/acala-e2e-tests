@@ -18,10 +18,14 @@ export default {
   }),
 } satisfies Config
 
-export const polkadot = {
-  dot: { Concrete: { parents: 0, interior: 'Here' } },
+export const kusamaRelay = {
+  paraId: 1000,
+  account: '5G6xAKRJBAMze9uUZpsyBJiBeZxvpwGr265AVX1mNLTaqLZd',
+  ksm: 340282366920938463463374607431768211454n,
 } as const
 
-export const kusama = {
-  ksm: { Concrete: { parents: 0, interior: 'Here' } },
+export const assetHubKusamaPara= {
+  paraId: 1000,
+  account: '5G6xAKRJBAMze9uUZpsyBJiBeZxvpwGr265AVX1mNLTaqLZd',
+  ksm: 340282366920938463463374607431768211455n,
 } as const

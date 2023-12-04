@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`'kusama' -> 'kusama-asset-hub' xcm transfer 'DMP' > xcmPallet transfer > balance on from chain 1`] = `
+{
+  "consumers": 0,
+  "data": {
+    "flags": "0x80000000000000000000000000000000",
+    "free": "(rounded 10000000000000)",
+    "frozen": 0,
+    "reserved": 0,
+  },
+  "nonce": 1,
+  "providers": 1,
+  "sufficients": 0,
+}
+`;
+
+exports[`'kusama' -> 'kusama-asset-hub' xcm transfer 'DMP' > xcmPallet transfer > tx events 1`] = `
+[
+  {
+    "data": {
+      "outcome": {
+        "Complete": {
+          "proofSize": "(rounded 6200)",
+          "refTime": "(rounded 630000000)",
+        },
+      },
+    },
+    "method": "Attempted",
+    "section": "xcmPallet",
+  },
+]
+`;
