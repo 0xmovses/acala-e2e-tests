@@ -6,7 +6,7 @@
 		"lint": "tsc --noEmit && eslint . --ext .js,.ts && prettier --check .",
 		"fix": "eslint . --ext .js,.ts --fix && prettier -w .",
 		"prepare": "husky install",
-		"test": "LOG_LEVEL=error vitest --silent",
+		"test": "LOG_LEVEL=error vitest",
 		"test:ui": "yarn test --ui",
 		"test:dev": "vitest --inspect --single-thread",
 		"update-env": "ts-node scripts/update-env.ts"

@@ -20,15 +20,16 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
 
       let fromAccount = alice
       if ('fromAccount' in opt) {
-        fromAccount = opt.fromAccount(ctx)
+        fromAccount = (opt.fromAccount as any)(ctx)
       }
+
 
       let toAccount = alice
       if ('toAccount' in opt) {
-        toAccount = opt.toAccount(ctx)
+        toAccount = (opt.toAccount as any)(ctx)
       }
 
-      let precision = 3
+      let precision: any
       if ('precision' in opt) {
         precision = opt.precision
       }
@@ -84,7 +85,6 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
           await toChain.chain.newBlock()
 
           await check(balance(toChain, toAccount.address))
-            .redact({ number: precision })
             .toMatchSnapshot('balance on to chain')
           await checkSystemEvents(toChain, 'parachainSystem', 'dmpQueue').toMatchSnapshot('to chain dmp events')
         })

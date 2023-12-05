@@ -20,7 +20,7 @@ export default {
 
 export const kusamaRelay = {
   paraId: 1000,
-  account: '5G6xAKRJBAMze9uUZpsyBJiBeZxvpwGr265AVX1mNLTaqLZd',
+  account: 'GcZpdmAoXNvPoivLXh25G5BoAFAdc62UTuutBHir8g5aPRM',
   ksm: 340282366920938463463374607431768211454n,
 } as const
 
