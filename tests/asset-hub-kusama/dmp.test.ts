@@ -1,18 +1,20 @@
+import { Context } from '../../networks/types'
 import { assetHubKusamaPara, kusamaRelay } from '../../networks/asset-hub'
 import { kusama } from '../../networks/polkadot'
 import { query, tx } from '../../helpers/api'
 import buildTest from './shared'
 
 const tests = [
+  // kusama <-> kusama-asset-hub
   {
     from: 'kusama',
-    route: 'kusama',
     to: 'kusama-asset-hub',
+    route: 'kusama',
     name: 'DMP',
     test: {
       xcmPalletDown:  {
-        tx: tx.xcmPallet.limitedReserveTransferAssetsV3(kusama.ksm, 1e6, tx.xcmPallet.parachainV3(0, assetHubKusamaPara.paraId)),
-        balance: query.assets(kusamaRelay.ksm),
+        tx: tx.xcmPallet.limitedReserveTransferAssetsV3(kusama.ksm, 1e12, tx.xcmPallet.parachainV3(0, assetHubKusamaPara.paraId)),
+        balance: query.tokens(kusamaRelay.ksm),
       },
     },
   },

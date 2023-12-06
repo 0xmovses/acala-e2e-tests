@@ -19,13 +19,10 @@ export default {
 } satisfies Config
 
 export const kusamaRelay = {
-  paraId: 1000,
-  account: 'GcZpdmAoXNvPoivLXh25G5BoAFAdc62UTuutBHir8g5aPRM',
-  ksm: 340282366920938463463374607431768211454n,
+  ksm: { Token: 'KSM'}
 } as const
 
 export const assetHubKusamaPara= {
   paraId: 1000,
-  account: '5G6xAKRJBAMze9uUZpsyBJiBeZxvpwGr265AVX1mNLTaqLZd',
-  ksm: 340282366920938463463374607431768211455n,
+ ksm: { Token: 'KSM' }
 } as const

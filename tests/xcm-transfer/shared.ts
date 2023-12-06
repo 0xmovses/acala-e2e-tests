@@ -1,6 +1,5 @@
 import { beforeEach, describe, it } from 'vitest'
 import { sendTransaction } from '@acala-network/chopsticks-testing'
-import _ from 'lodash'
 
 import { Network, NetworkNames, createContext, createNetworks } from '../../networks'
 import { check, checkEvents, checkHrmp, checkSystemEvents, checkUmp } from '../../helpers'

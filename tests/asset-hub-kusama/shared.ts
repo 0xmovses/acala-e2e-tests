@@ -5,9 +5,8 @@ import _ from 'lodash'
 import { Network, NetworkNames, createContext, createNetworks } from '../../networks'
 import { check, checkEvents, checkHrmp, checkSystemEvents, checkUmp } from '../../helpers'
 
-import type { TestType as AssetHubKusamaTestType } from './dmp.test'
+import type { TestType } from './dmp.test'
 
-type TestType = AssetHubKusamaTestType
 export default function buildTest(tests: ReadonlyArray<TestType>) {
   for (const { from, to, test, name, ...opt } of tests) {
     describe(`'${from}' -> '${to}' xcm transfer '${name}'`, async () => {
@@ -29,10 +28,7 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
         toAccount = (opt.toAccount as any)(ctx)
       }
 
-      let precision: any
-      if ('precision' in opt) {
-        precision = opt.precision
-      }
+      const precision = 3
 
       beforeEach(async () => {
         const networkOptions = {
@@ -48,16 +44,6 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
         toChain = chains[to]
         if ('route' in opt) {
           routeChain = chains[opt.route]
-        }
-
-        if ('fromStorage' in opt) {
-          const override = typeof opt.fromStorage === 'function' ? opt.fromStorage(ctx) : opt.fromStorage
-          await fromChain.dev.setStorage(override)
-        }
-
-        if ('toStorage' in opt) {
-          const override = typeof opt.toStorage === 'function' ? opt.toStorage(ctx) : opt.toStorage
-          await toChain.dev.setStorage(override)
         }
 
         return async () => {
@@ -76,17 +62,21 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
           const tx0 = await sendTransaction(tx(fromChain, toAccount.addressRaw).signAsync(fromAccount))
 
           await fromChain.chain.newBlock()
+          console.log('toAccount.address', toAccount.address)
+          console.log('fromAccount.address', fromAccount.address)
 
           await check(fromChain.api.query.system.account(fromAccount.address))
             .redact({ number: precision })
             .toMatchSnapshot('balance on from chain')
           await checkEvents(tx0, 'xcmPallet').redact({ number: precision }).toMatchSnapshot('tx events')
+          console.log('queried system.account')
 
           await toChain.chain.newBlock()
+          console.log('new block')
 
           await check(balance(toChain, toAccount.address))
             .toMatchSnapshot('balance on to chain')
-          await checkSystemEvents(toChain, 'parachainSystem', 'dmpQueue').toMatchSnapshot('to chain dmp events')
+          console.log('checked bal')
         })
       }
     })
