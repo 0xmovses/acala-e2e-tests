@@ -5,7 +5,7 @@ import _ from 'lodash'
 import { Network, NetworkNames, createContext, createNetworks } from '../../networks'
 import { check, checkEvents, checkHrmp, checkSystemEvents, checkUmp } from '../../helpers'
 
-import type { TestType } from './dmp.test'
+import type { TestType } from './xcm.test'
 
 export default function buildTest(tests: ReadonlyArray<TestType>) {
   for (const { from, to, test, name, ...opt } of tests) {
@@ -73,6 +73,31 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
 
           await check(systemBalance(toChain, toAccount.address))
             .toMatchSnapshot('balance on toChain')
+        })
+      }
+
+      if ('xcmPalletUp' in test) {
+        const { systemBalance, tokensBalance, tx } = test.xcmPalletUp
+
+        it('xcmPallet transfer', async () => {
+          const tx0 = await sendTransaction(tx(fromChain, fromAccount.addressRaw).signAsync(fromAccount))
+          console.log('tx0', tx0)
+
+          await toChain.chain.newBlock()
+
+          await check(tokensBalance(toChain, fromAccount.address))
+            .redact({ number: precision })
+            .toMatchSnapshot('balance on fromChain')
+          await checkUmp(fromChain).toMatchSnapshot('from chain ump messages')
+
+          await toChain.chain.newBlock()
+
+          await check(systemBalance(fromChain, fromAccount.address))
+            .redact({ number: precision })
+            .toMatchSnapshot('balance on toChain')
+
+          await checkSystemEvents(toChain, 'ump', 'messageQueue').toMatchSnapshot('to chain ump events')
+
         })
       }
     })
