@@ -1,11 +1,11 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`'kusama' -> 'kusama-asset-hub' xcm transfer 'DMP' > xcmPallet transfer > balance on from chain 1`] = `
+exports[`'kusama' -> 'kusama-asset-hub' xcm transfer 'DMP' > xcmPallet transfer > balance on fromChain 1`] = `
 {
   "consumers": 0,
   "data": {
     "flags": "0x80000000000000000000000000000000",
-    "free": "(rounded 10000000000000)",
+    "free": "(rounded 9000000000000)",
     "frozen": 0,
     "reserved": 0,
   },
@@ -15,46 +15,19 @@ exports[`'kusama' -> 'kusama-asset-hub' xcm transfer 'DMP' > xcmPallet transfer 
 }
 `;
 
-exports[`'kusama' -> 'kusama-asset-hub' xcm transfer 'DMP' > xcmPallet transfer > balance on to chain 1`] = `null`;
-
-exports[`'kusama' -> 'kusama-asset-hub' xcm transfer 'DMP' > xcmPallet transfer > to chain dmp events 1`] = `
-[
-  {
-    "data": {
-      "count": 1,
-    },
-    "method": "DownwardMessagesReceived",
-    "section": "parachainSystem",
+exports[`'kusama' -> 'kusama-asset-hub' xcm transfer 'DMP' > xcmPallet transfer > balance on toChain 1`] = `
+{
+  "consumers": 0,
+  "data": {
+    "flags": 0,
+    "free": 10000000000000,
+    "frozen": 0,
+    "reserved": 0,
   },
-  {
-    "data": {
-      "messageHash": "(hash)",
-      "messageId": "(hash)",
-      "outcome": {
-        "Incomplete": [
-          {
-            "proofSize": 0,
-            "refTime": 1000000000,
-          },
-          "UntrustedReserveLocation",
-        ],
-      },
-    },
-    "method": "ExecutedDownward",
-    "section": "dmpQueue",
-  },
-  {
-    "data": {
-      "dmqHead": "(hash)",
-      "weightUsed": {
-        "proofSize": 0,
-        "refTime": 1000000000,
-      },
-    },
-    "method": "DownwardMessagesProcessed",
-    "section": "parachainSystem",
-  },
-]
+  "nonce": 0,
+  "providers": 1,
+  "sufficients": 0,
+}
 `;
 
 exports[`'kusama' -> 'kusama-asset-hub' xcm transfer 'DMP' > xcmPallet transfer > tx events 1`] = `

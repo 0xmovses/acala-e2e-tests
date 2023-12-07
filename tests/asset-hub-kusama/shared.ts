@@ -21,6 +21,7 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
       if ('fromAccount' in opt) {
         fromAccount = (opt.fromAccount as any)(ctx)
       }
+      console.log('aliceAddress', alice.address)
 
 
       let toAccount = alice
@@ -56,27 +57,22 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
       })
 
       if ('xcmPalletDown' in test) {
-        const { balance, tx } = test.xcmPalletDown
+        const { systemBalance, tx } = test.xcmPalletDown
 
         it('xcmPallet transfer', async () => {
           const tx0 = await sendTransaction(tx(fromChain, toAccount.addressRaw).signAsync(fromAccount))
 
           await fromChain.chain.newBlock()
-          console.log('toAccount.address', toAccount.address)
-          console.log('fromAccount.address', fromAccount.address)
 
           await check(fromChain.api.query.system.account(fromAccount.address))
             .redact({ number: precision })
-            .toMatchSnapshot('balance on from chain')
+            .toMatchSnapshot('balance on fromChain')
           await checkEvents(tx0, 'xcmPallet').redact({ number: precision }).toMatchSnapshot('tx events')
-          console.log('queried system.account')
 
           await toChain.chain.newBlock()
-          console.log('new block')
 
-          await check(balance(toChain, toAccount.address))
-            .toMatchSnapshot('balance on to chain')
-          console.log('checked bal')
+          await check(systemBalance(toChain, toAccount.address))
+            .toMatchSnapshot('balance on toChain')
         })
       }
     })

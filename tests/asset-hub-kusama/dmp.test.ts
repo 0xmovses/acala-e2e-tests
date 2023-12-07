@@ -14,7 +14,7 @@ const tests = [
     test: {
       xcmPalletDown:  {
         tx: tx.xcmPallet.limitedReserveTransferAssetsV3(kusama.ksm, 1e12, tx.xcmPallet.parachainV3(0, assetHubKusamaPara.paraId)),
-        balance: query.tokens(kusamaRelay.ksm),
+        systemBalance: query.systemBalance
       },
     },
   },
