@@ -56,7 +56,7 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
 
       if ('xcmPalletLimitedTeleport' in test) {
         const { systemBalance, tx } = test.xcmPalletLimitedTeleport
-        it('xcmPallet transfer', async () => {
+        it('xcmPalletLimitedTeleport', async () => {
           const tx0 = await sendTransaction(tx(fromChain, toAccount.addressRaw).signAsync(fromAccount))
 
           await fromChain.chain.newBlock()
@@ -73,9 +73,9 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
         })
       }
 
-      if ('xcmLimitedReserve' in test) {
-        const { systemBalance, tokensBalance, tx } = test.xcmPalletLimitedReserve
-        it('xcmLimitedReserve transfer', async () => {
+      if ('xcmPalletLimitedReserve' in test) {
+        const { systemBalance, tx } = test.xcmPalletLimitedReserve
+        it('xcmPalletLimitedReserve', async () => {
           const tx0 = await sendTransaction(tx(fromChain, toAccount.addressRaw).signAsync(fromAccount))
 
           await fromChain.chain.newBlock()
@@ -89,8 +89,6 @@ export default function buildTest(tests: ReadonlyArray<TestType>) {
 
           await check(systemBalance(toChain, toAccount.address))
             .toMatchSnapshot('balance on toChain')
-          await check(tokensBalance(toChain, toAccount.address))
-            .toMatchSnapshot('tokens balance on toChain')
         })
       }
     })

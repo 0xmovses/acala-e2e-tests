@@ -13,7 +13,6 @@ const tests = [
       xcmPalletLimitedTeleport: {
         tx: tx.xcmPallet.limitedTeleportAssets(polkadot.dot, 1e12, tx.xcmPallet.parachainV3(0, collectivesPolkadot.paraId)),
         systemBalance: query.systemBalance,
-        tokensBalance: query.tokens(polkadot.dot),
       },
     },
   },
@@ -26,7 +25,6 @@ const tests = [
       xcmPalletLimitedReserve: {
         tx: tx.xcmPallet.limitedReserveTransferAssetsV3(polkadot.dot, 1e12, tx.xcmPallet.parachainV3(0, collectivesPolkadot.paraId)),
         systemBalance: query.systemBalance,
-        tokensBalance: query.tokens(polkadot.dot),
       },
     },
   },
