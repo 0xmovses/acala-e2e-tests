@@ -1,5 +1,4 @@
-import { Context } from '../../networks/types'
-import { assetHubKusamaPara, kusamaRelay } from '../../networks/asset-hub'
+import { assetHubKusamaPara } from '../../networks/asset-hub'
 import { kusama } from '../../networks/polkadot'
 import { query, tx } from '../../helpers/api'
 import buildTest from './shared'

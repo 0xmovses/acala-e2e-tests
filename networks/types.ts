@@ -16,8 +16,8 @@ export type FullContext = Context &
   }
 
 export type Config<T = object> = {
-  polkadot?: NetworkConfig & T
-  kusama?: NetworkConfig & T
+  relaychain?: NetworkConfig & T
+  parachain?: NetworkConfig & T
   config(context: FullContext & T): {
     storages?: Record<string, Record<string, any>>
     options?: Partial<SetupOption>

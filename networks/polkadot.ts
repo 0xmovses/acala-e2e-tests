@@ -33,3 +33,5 @@ export const polkadot = {
 export const kusama = {
   ksm: { Concrete: { parents: 0, interior: 'Here' } },
 } as const
+
+

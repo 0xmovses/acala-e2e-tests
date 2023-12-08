@@ -2,12 +2,12 @@ import { Config } from './types'
 
 export default {
   relaychain: {
-    name: 'polkadot-asset-hub' as const,
-    endpoint: 'wss://polkadot-asset-hub-rpc.polkadot.io',
+    name: 'polkadot' as const,
+    endpoint: 'wss://rpc.polkadot.io',
   },
   parachain: {
-    name: 'kusama-asset-hub' as const,
-    endpoint: 'wss://kusama-asset-hub-rpc.polkadot.io',
+    name: 'collectives' as const,
+    endpoint: 'wss://polkadot-collectives-rpc.polkadot.io',
   },
   config: ({ alice }) => ({
     storages: {
@@ -23,7 +23,10 @@ export const kusamaRelay = {
   ksm: { Token: 'KSM'}
 } as const
 
-export const assetHubKusamaPara= {
-  paraId: 1000,
- ksm: { Token: 'KSM' }
+
+export const collectives = {
+  paraId: 2000,
+  paraAccount: '13YMK2eYoAvStnzReuxBjMrAvPXmmdsURwZvc62PrdXimbNy',
+  dot: { Token: 'DOT' },
+  ksm: { Token: 'KSM' },
 } as const
