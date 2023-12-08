@@ -34,4 +34,11 @@ export const kusama = {
   ksm: { Concrete: { parents: 0, interior: 'Here' } },
 } as const
 
+export const collectivesPolkadot = {
+  paraId: 2000,
+  paraAccount: '13YMK2eYoAvStnzReuxBjMrAvPXmmdsURwZvc62PrdXimbNy',
+  dot: { Token: 'DOT' },
+  ksm: { Token: 'KSM' },
+} as const
+
 

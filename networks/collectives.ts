@@ -1,11 +1,11 @@
 import { Config } from './types'
 
 export default {
-  relaychain: {
+  polkadot: {
     name: 'polkadot' as const,
     endpoint: 'wss://rpc.polkadot.io',
   },
-  parachain: {
+  kusama: {
     name: 'collectives' as const,
     endpoint: 'wss://polkadot-collectives-rpc.polkadot.io',
   },

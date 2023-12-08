@@ -1,11 +1,11 @@
 import { Config } from './types'
 
 export default {
-  relaychain: {
+  polkadot: {
     name: 'polkadot-asset-hub' as const,
     endpoint: 'wss://polkadot-asset-hub-rpc.polkadot.io',
   },
-  parachain: {
+  kusama: {
     name: 'kusama-asset-hub' as const,
     endpoint: 'wss://kusama-asset-hub-rpc.polkadot.io',
   },
